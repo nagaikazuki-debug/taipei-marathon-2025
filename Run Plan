@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台北マラソン2025 完全攻略ガイド</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#ffffff;
+      --ink:#111;
+      --muted:#333;
+      --accent:#2b6cff;
+      --accent2:#7c3aed;
+      --warn:#ffb020;
+      --ok:#16a34a;
+      --soft:#f3f4f6;
+      --soft2:#eef2ff;
+      --shadow:0 14px 40px rgba(0,0,0,.25);
+      --radius:18px;
+      --focus:0 0 0 4px rgba(43,108,255,.25);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+      background:linear-gradient(135deg,#0b1020 0%,#1b0f3a 100%);
+      color:var(--ink);
+      padding:12px;
+      line-height:1.6; /* 改行少なめでも読める */
+      word-break:break-word;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    a:focus{outline:none;box-shadow:var(--focus);border-radius:10px}
+    .container{
+      max-width:1040px;margin:0 auto;background:var(--panel);
+      border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;
+    }
+    header{
+      background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+      color:#fff;padding:22px 18px;text-align:center;
+    }
+    header h1{font-size:1.55rem;letter-spacing:.02em;font-weight:900}
+    header p{opacity:.95;margin-top:6px;font-size:0.95rem}
+
+    /* 読みやすさ：文字サイズ大きめ＋段落余白少なめ＝改行少なめ */
+    .content{padding:16px}
+    p{margin:8px 0}
+    ul,ol{margin:8px 0 8px 20px}
+    li{margin:6px 0}
+
+    /* 見出しは英字をUPPERCASE化（日本語は変化しません） */
+    h2,h3{letter-spacing:.02em}
+    h2{
+      margin-top:18px;
+      padding-top:10px;
+      border-top:3px solid #e5e7eb;
+      color:var(--accent);
+      font-size:1.25rem;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+    h3{
+      margin-top:12px;
+      color:var(--accent2);
+      font-size:1.05rem;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    /* 目次：固定（スクロールしても使える）＋タップしやすい */
+    .toc{
+      position:sticky;top:10px;z-index:10;
+      background:linear-gradient(135deg,#f8fafc 0%,#eef2ff 100%);
+      border:1px solid #e5e7eb;
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:12px;
+    }
+    .toc-title{
+      display:flex;align-items:center;gap:8px;
+      font-weight:900;color:#111;margin-bottom:8px;
+      text-transform:uppercase;
+    }
+    .toc ul{list-style:none;margin:0;padding:0}
+    .toc li{margin:8px 0}
+    .toc a{
+      display:block;
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:10px 10px;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+    .toc a:hover{background:var(--soft2)}
+    .toc a:active{transform:translateY(1px)}
+
+    /* 強調ボックス：色＋太字で識別（夜でも差が分かりやすい） */
+    .box{
+      border-radius:14px;padding:12px;margin:10px 0;border:2px solid transparent;
+    }
+    .box.ok{background:#ecfdf3;border-color:#b7f7c9}
+    .box.warn{background:#fff7e6;border-color:#ffd18a}
+    .box.info{background:#eef6ff;border-color:#b9ddff}
+    .box strong{font-weight:900}
+
+    /* details：開閉しやすく、本文は詰める */
+    details{
+      background:#fff;border:1px solid #e5e7eb;border-radius:14px;
+      padding:10px;margin:10px 0;
+    }
+    summary{
+      cursor:pointer;font-weight:900;color:#111;
+      text-transform:uppercase;
+    }
+    summary:focus{outline:none;box-shadow:var(--focus);border-radius:10px}
+
+    /* テーブル：見出し太字＋行間広め */
+    table{width:100%;border-collapse:collapse;margin:10px 0;border-radius:14px;overflow:hidden}
+    th,td{border:1px solid #e5e7eb;padding:10px;vertical-align:top}
+    th{
+      background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);
+      color:#fff;font-weight:900;text-transform:uppercase;
+    }
+    tr:nth-child(even){background:#f9fafb}
+
+    /* 上に戻る */
+    .backtop{
+      display:inline-block;margin:10px 0;
+      padding:10px 12px;border-radius:12px;
+      border:1px solid #e5e7eb;background:#fff;font-weight:900;
+      text-transform:uppercase;
+    }
+
+    /* スキップリンク（アクセシビリティ） */
+    .skip{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+    }
+    .skip:focus{
+      left:12px;top:12px;width:auto;height:auto;
+      background:#fff;padding:10px;border-radius:12px;box-shadow:var(--shadow);
+      z-index:9999;
+    }
+
+    footer{
+      background:#0f172a;color:#fff;padding:16px;text-align:center
+    }
+    footer p{margin:8px 0;opacity:.95}
+  </style>
+</head>
+
+<body>
+<a class="skip" href="#toc">目次へスキップ</a>
+
+<div class="container">
+  <header>
+    <h1>🏃‍♂️ 台北マラソン2025 完全攻略ガイド</h1>
+    <p>初めての海外マラソン向け：安全・快適・ベストコンディション重視</p>
+  </header>
+
+  <div class="content">
+
+    <!-- TOC -->
+    <nav class="toc" id="toc" aria-label="目次">
+      <div class="toc-title">📋 TABLE OF CONTENTS</div>
+      <ul>
+        <li><a href="#conclusion">INTRODUCTION: A WINNING CONCLUSION</a></li>
+        <li><a href="#digital-prep">DIGITAL PREPARATIONS BEFORE DEPARTURE (COMPLETE IN JAPAN)</a></li>
+        <li><a href="#schedule">CONFIRMED SCHEDULE (FLIGHTS AND ACCOMMODATIONS)</a></li>
+        <li><a href="#links">IMPORTANT OFFICIAL LINKS</a></li>
+        <li><a href="#daily-plan">DETAILED PLAN BY DATE</a></li>
+        <li><a href="#communication">SECURING COMMUNICATION METHODS</a></li>
+        <li><a href="#glossary">MINI DICTIONARY OF TERMINOLOGY AND ABBREVIATIONS</a></li>
+        <li><a href="#conversation-cards">SPEECH CARDS TO USE WHILE YOU'RE THERE</a></li>
+        <li><a href="#useful-phrases">USEFUL SHORT PHRASES</a></li>
+        <li><a href="#checklist">PRE-DEPARTURE CHECKLIST</a></li>
+        <li><a href="#golden-rules">ULTIMATE RULES FOR WHEN YOU GET LOST</a></li>
+      </ul>
+    </nav>
+
+    <!-- 0 -->
+    <section id="conclusion">
+      <h2>0. はじめに：勝利への結論（この旅の攻略法）</h2>
+      <div class="box ok">
+        <strong>結論：</strong>12/19は回復、12/20はEXPO最優先、12/21は早め行動、12/22は空港は早着。迷ったらホテル→Uber。
+      </div>
+      <p>あなたの計画は完成度が高いです。ここでは「手続き」「移動」「通信」「当日運用」を迷わない形に整えます。</p>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 1 -->
+    <section id="digital-prep">
+      <h2>1. 出発前のデジタル準備（日本で完了すること）</h2>
+      <div class="box warn">
+        <strong>重要：</strong>現地で迷いが出やすいのは「通信」「配車」「入国/帰国手続き」。日本で終わらせるほど当日が楽です。
+      </div>
+
+      <details open>
+        <summary>必須（あなたが使う）</summary>
+        <ul>
+          <li><strong>UBER：</strong>配車＋決済（外部） <a href="https://www.uber.com/" target="_blank" rel="noopener">https://www.uber.com/</a></li>
+          <li><strong>GOOGLE MAPS：</strong>オフライン地図（外部） <a href="https://support.google.com/maps/answer/6291838" target="_blank" rel="noopener">https://support.google.com/maps/answer/6291838</a></li>
+          <li><strong>TWAC：</strong>台湾入国カード（外部） <a href="https://twac.immigration.gov.tw/" target="_blank" rel="noopener">https://twac.immigration.gov.tw/</a></li>
+          <li><strong>VISIT JAPAN WEB：</strong>日本帰国（外部） <a href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener">https://www.vjw.digital.go.jp/</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary>通信（2人旅＋視覚支援向けのおすすめ運用）</summary>
+        <div class="box info">
+          <strong>おすすめ：</strong>POCKET WI-FI（メイン）＋あなたのiPhoneにeSIM（予備）。同行者も同時接続でき、失敗が少ない。
+        </div>
+        <ul>
+          <li><strong>POCKET WI-FI：</strong>2人で同時に使える。設定が単純。予備バッテリー推奨。</li>
+          <li><strong>eSIM：</strong>荷物ゼロ。切替ミスが不安なら“予備”に回すと強い。</li>
+          <li><strong>TRIFA（例）：</strong> <a href="https://www.trifa.co/" target="_blank" rel="noopener">https://www.trifa.co/</a></li>
+        </ul>
+      </details>
+
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 2 -->
+    <section id="schedule">
+      <h2>2. 確定スケジュール（フライト・宿泊）</h2>
+      <div class="box info">
+        <p><strong>往路：</strong>12/19 新千歳 14:40 → 桃園 18:15</p>
+        <p><strong>復路：</strong>12/22 桃園 08:35 → 新千歳 13:15</p>
+        <p><strong>宿：</strong>大欣飯店（中山駅）</p>
+      </div>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 3 -->
+    <section id="links">
+      <h2>3. 重要な公式リンク集</h2>
+      <ul>
+        <li><strong>台北マラソン公式：</strong><a href="https://www.taipeicitymarathon.com/" target="_blank" rel="noopener">https://www.taipeicitymarathon.com/</a></li>
+        <li><strong>大会概要：</strong><a href="https://www.taipeicitymarathon.com/jp/REGULATIONS.php" target="_blank" rel="noopener">https://www.taipeicitymarathon.com/jp/REGULATIONS.php</a></li>
+        <li><strong>コースMAP：</strong><a href="https://www.taipeicitymarathon.com/jp/ROUTEMAP.php" target="_blank" rel="noopener">https://www.taipeicitymarathon.com/jp/ROUTEMAP.php</a></li>
+        <li><strong>EXPO：</strong><a href="https://marathonexpo.tw/" target="_blank" rel="noopener">https://marathonexpo.tw/</a></li>
+      </ul>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 4 -->
+    <section id="daily-plan">
+      <h2>4. 日程別詳細プラン</h2>
+
+      <details open>
+        <summary>12/20 EXPO（本人受付）公式情報反映</summary>
+        <div class="box warn">
+          <strong>受付できないと出走不可：</strong>時間内に必ず完了。パスポート必須。
+        </div>
+        <ul>
+          <li><strong>12/18〜12/19：</strong>13:00〜20:00</li>
+          <li><strong>12/20：</strong>11:00〜18:00</li>
+          <li><strong>会場：</strong>花博争艶館（台北市中山区玉門街1号）</li>
+          <li><strong>MAP：</strong><a href="https://maps.app.goo.gl/iVCJZ7CkPpemXuRg6" target="_blank" rel="noopener">https://maps.app.goo.gl/iVCJZ7CkPpemXuRg6</a></li>
+        </ul>
+      </details>
+
+      <details open>
+        <summary>12/21 スタート時刻（参考情報反映）</summary>
+        <div class="box ok">
+          <strong>フル：</strong>06:30 START（集合目安 06:00）→ 目標は05:30前後に会場到着（トイレ混雑対策）。
+        </div>
+      </details>
+
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 5 -->
+    <section id="communication">
+      <h2>5. 通信手段の確保</h2>
+      <div class="box info">
+        <strong>2人旅＋視覚支援：</strong>POCKET WI-FIが“失敗しにくい”。あなたのeSIMは“保険”が最強。
+      </div>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 6 -->
+    <section id="glossary">
+      <h2>6. 用語・略語ミニ辞典</h2>
+      <details><summary>MRT</summary><p>台北の地下鉄。移動の基本。<a href="https://www.metro.taipei/" target="_blank" rel="noopener">https://www.metro.taipei/</a></p></details>
+      <details><summary>EXPO</summary><p>ゼッケン受取会場。指定時間内必須。<a href="https://marathonexpo.tw/" target="_blank" rel="noopener">https://marathonexpo.tw/</a></p></details>
+      <details><summary>TWAC</summary><p>台湾入国カードのWEB版。<a href="https://twac.immigration.gov.tw/" target="_blank" rel="noopener">https://twac.immigration.gov.tw/</a></p></details>
+      <details><summary>VISIT JAPAN WEB</summary><p>帰国時の入国・税関がQRで楽。<a href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener">https://www.vjw.digital.go.jp/</a></p></details>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 7 -->
+    <section id="conversation-cards">
+      <h2>7. 現地で使える会話カード</h2>
+      <div class="box warn"><strong>使い方：</strong>スクショして見せるだけでOK。</div>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 8 -->
+    <section id="useful-phrases">
+      <h2>8. 便利な短い言葉</h2>
+      <div class="box info">
+        <p><strong>謝謝：</strong>ありがとう / <strong>不好意思：</strong>すみません / <strong>多少錢：</strong>いくら？ / <strong>不要辣：</strong>辛くしないで</p>
+      </div>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 9 -->
+    <section id="checklist">
+      <h2>9. 出発前チェックリスト</h2>
+      <ul>
+        <li><strong>パスポート：</strong>有効期限</li>
+        <li><strong>EXPO：</strong>パスポート原本＋エントリー番号メール</li>
+        <li><strong>通信：</strong>POCKET WI-FI or eSIM（予備含む）</li>
+      </ul>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+    <!-- 10 -->
+    <section id="golden-rules">
+      <h2>10. 迷った時の最強ルール</h2>
+      <div class="box ok">
+        <strong>結論：</strong>困ったらホテルフロント→無理ならUber→早め行動→体調が怪しい時は観光を捨てる。
+      </div>
+      <a class="backtop" href="#toc">BACK TO TOC</a>
+    </section>
+
+  </div>
+
+  <footer>
+    <p><strong>GOOD LUCK & ENJOY TAIPEI.</strong></p>
+    <p>目次でページ内ジャンプできます。外部リンクは新しいタブで開きます。</p>
+  </footer>
+</div>
+
+<script>
+/* 環境によって「#リンクが別挙動になる」問題を潰す：ページ内は強制スクロール */
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  const href = a.getAttribute('href') || '';
+  if (href.startsWith('#')) {
+    e.preventDefault();
+    const id = href.slice(1);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.replaceState(null, '', href);
+  }
+});
+</script>
+</body>
+</html>
